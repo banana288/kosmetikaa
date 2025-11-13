@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumière Beauty | Роскошная косметика</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Глобальные стили */
+        :root {
+            --primary: #D81B60;
+            --primary-dark: #AD1457;
+            --primary-light: #EC407A;
+            --accent: #F06292;
+            --accent-light: #F8BBD0;
+            --rose-gold: #F48FB1;
+            --dark: #1a1a1a;
+            --light: #f8f8f8;
+            --gray: #6b7280;
+            --gray-light: #e5e7eb;
+            --gradient: linear-gradient(135deg, var(--primary), var(--rose-gold));
+            --gradient-gold: linear-gradient(135deg, var(--accent), #F8BBD0);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --border-radius: 8px;
+            --border-radius-lg: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Шапка */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.2rem 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        header.scrolled {
+            padding: 0.8rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .header-actions a {
+            color: var(--dark);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .header-actions a:hover {
+            color: var(--primary);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Главная страница */
+        .hero {
+            padding: 10rem 0 6rem;
+            background: linear-gradient(135deg, rgba(216, 27, 96, 0.1) 0%, rgba(244, 143, 177, 0.1) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+        }
+
+        /* Кнопки */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.5rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            margin-left: 1rem;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Продукты */
+        .products {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .section-header p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--gradient-gold);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-image {
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary-light), var(--rose-gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .product-content {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            color: var(--gray);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .product-rating {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        /* Преимущества */
+        .benefits {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, rgba(216, 27, 96, 0.05) 0%, rgba(244, 143, 177, 0.05) 100%);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .benefit-card p {
+            color: var(--gray);
+        }
+
+        /* О нас */
+        .about {
+            padding: 6rem 0;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .about-visual {
+            background: linear-gradient(135deg, var(--primary-light), var(--rose-gold));
+            height: 400px;
+            border-radius: var(--border-radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        /* Отзывы */
+        .testimonials {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, rgba(216, 27, 96, 0.05) 0%, rgba(244, 143, 177, 0.05) 100%);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Страница каталога */
+        .catalog {
+            padding: 8rem 0 4rem;
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            background: white;
+            border: 1px solid var(--gray-light);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        /* Страница о компании */
+        .company-hero {
+            padding: 8rem 0 4rem;
+            background: linear-gradient(135deg, rgba(216, 27, 96, 0.1) 0%, rgba(244, 143, 177, 0.1) 100%);
+            text-align: center;
+        }
+
+        .company-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .company-values {
+            padding: 4rem 0;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        /* Страница контактов */
+        .contact-hero {
+            padding: 8rem 0 4rem;
+            background: linear-gradient(135deg, rgba(216, 27, 96, 0.1) 0%, rgba(244, 143, 177, 0.1) 100%);
+            text-align: center;
+        }
+
+        .contact-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            padding: 4rem 0;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--gray-light);
+            border-radius: var(--border-radius);
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Корзина */
+        .cart {
+            padding: 8rem 0 4rem;
+        }
+
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+
+        .cart-table th, .cart-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .cart-table th {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-light), var(--rose-gold));
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            background: var(--gray-light);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .cart-summary {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow);
+            margin-top: 2rem;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .summary-total {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        /* Подвал */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-light);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-light);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--gradient);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray-light);
+        }
+
+        /* Страницы */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: var(--shadow);
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-secondary {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header id="header">
+        <div class="container header-content">
+            <a href="#" class="logo" data-page="home">
+                <span class="logo-icon">✦</span>
+                Lumière Beauty
+            </a>
+            
+            <button class="menu-toggle">
+                ☰
+            </button>
+            
+            <nav>
+                <ul>
+                    <li><a href="#" data-page="home">Главная</a></li>
+                    <li><a href="#" data-page="catalog">Каталог</a></li>
+                    <li><a href="#" data-page="about">О компании</a></li>
+                    <li><a href="#" data-page="contact">Контакты</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <a href="#" data-page="cart">🛍️ <span class="cart-count">0</span></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Главная страница -->
+    <section id="home" class="page active">
+        <!-- Герой секция -->
+        <section class="hero">
+            <div class="container hero-content fade-in">
+                <h1>Роскошная косметика для сияющей кожи</h1>
+                <p>Откройте для себя премиальную уходовую косметику, созданную на основе натуральных ингредиентов и передовых научных разработок</p>
+                <div>
+                    <a href="#" class="btn btn-primary" data-page="catalog">Исследовать коллекцию</a>
+                    <a href="#" class="btn btn-secondary" data-page="about">Узнать больше</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Продукция -->
+        <section class="products">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Популярные товары</h2>
+                    <p>Откройте для себя продукты, которые преобразят вашу кожу</p>
+                </div>
+                
+                <div class="product-grid">
+                    <div class="product-card fade-in">
+                        <div class="product-badge">Хит продаж</div>
+                        <div class="product-image">
+                            💎
+                        </div>
+                        <div class="product-content">
+                            <div class="product-category">Уход за лицом</div>
+                            <h3 class="product-title">Омолаживающая сыворотка</h3>
+                            <div class="product-rating">
+                                ★★★★★
+                            </div>
+                            <div class="product-price">4 200 ₽</div>
+                            <button class="btn btn-primary" style="width: 100%;" onclick="addToCart('Омолаживающая сыворотка', 4200)">Добавить в корзину</button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card fade-in">
+                        <div class="product-badge">Новинка</div>
+                        <div class="product-image">
+                            🌿
+                        </div>
+                        <div class="product-content">
+                            <div class="product-category">Уход за телом</div>
+                            <h3 class="product-title">Питательный крем для тела</h3>
+                            <div class="product-rating">
+                                ★★★★☆
+                            </div>
+                            <div class="product-price">2 800 ₽</div>
+                            <button class="btn btn-primary" style="width: 100%;" onclick="addToCart('Питательный крем для тела', 2800)">Добавить в корзину</button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card fade-in">
+                        <div class="product-image">
+                            🌸
+                        </div>
+                        <div class="product-content">
+                            <div class="product-category">Ароматерапия</div>
+                            <h3 class="product-title">Эфирное масло лаванды</h3>
+                            <div class="product-rating">
+                                ★★★★★
+                            </div>
+                            <div class="product-price">1 500 ₽</div>
+                            <button class="btn btn-primary" style="width: 100%;" onclick="addToCart('Эфирное масло лаванды', 1500)">Добавить в корзину</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Преимущества -->
+        <section class="benefits">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Почему выбирают нас</h2>
+                    <p>Наши принципы и преимущества</p>
+                </div>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-card fade-in">
+                        <div class="benefit-icon">
+                            🌿
+                        </div>
+                        <h3>Натуральные ингредиенты</h3>
+                        <p>Используем только натуральные компоненты высочайшего качества</p>
+                    </div>
+                    
+                    <div class="benefit-card fade-in">
+                        <div class="benefit-icon">
+                            🔬
+                        </div>
+                        <h3>Научный подход</h3>
+                        <p>Современные технологии и научные разработки в каждой формуле</p>
+                    </div>
+                    
+                    <div class="benefit-card fade-in">
+                        <div class="benefit-icon">
+                            ♻️
+                        </div>
+                        <h3>Экологичность</h3>
+                        <p>Заботимся о планете с помощью устойчивых практик производства</p>
+                    </div>
+                    
+                    <div class="benefit-card fade-in">
+                        <div class="benefit-icon">
+                            🏆
+                        </div>
+                        <h3>Гарантия качества</h3>
+                        <p>Все продукты проходят строгий контроль качества</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- О нас -->
+        <section class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text fade-in">
+                        <h2>Наша философия красоты</h2>
+                        <p>Lumière Beauty — это синтез роскоши, науки и природы. Мы верим, что настоящая красота исходит из гармонии между внутренним состоянием и внешним уходом.</p>
+                        <p>Наша миссия — создавать продукты, которые не только преображают кожу, но и дарят ощущение благополучия и уверенности в себе.</p>
+                        
+                        <div class="about-features">
+                            <div class="feature">
+                                <div class="feature-icon">
+                                    🌱
+                                </div>
+                                <div>
+                                    <h4>Натуральность</h4>
+                                    <p>95% натуральных ингредиентов</p>
+                                </div>
+                            </div>
+                            
+                            <div class="feature">
+                                <div class="feature-icon">
+                                    ❤️
+                                </div>
+                                <div>
+                                    <h4>Эффективность</h4>
+                                    <p>Доказанные результаты</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-visual fade-in">
+                        ✨
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Отзывы -->
+        <section class="testimonials">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Отзывы клиентов</h2>
+                    <p>Что говорят наши покупатели</p>
+                </div>
+                
+                <div class="testimonials-grid">
+                    <div class="testimonial-card fade-in">
+                        <div class="testimonial-text">
+                            "Омолаживающая сыворотка превзошла все мои ожидания. Кожа стала заметно более упругой и сияющей уже через 2 недели использования!"
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">АК</div>
+                            <div class="author-info">
+                                <h4>Анна К.</h4>
+                                <p>Постоянный клиент</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card fade-in">
+                        <div class="testimonial-text">
+                            "Люблю натуральный состав и роскошную текстуру кремов. Кожа стала значительно лучше, исчезли раздражения."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">МС</div>
+                            <div class="author-info">
+                                <h4>Мария С.</h4>
+                                <p>Клиент 2 года</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card fade-in">
+                        <div class="testimonial-text">
+                            "Ароматы просто божественные! Качество продукции соответствует цене. Рекомендую всем, кто ценит качество."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">ЕП</div>
+                            <div class="author-info">
+                                <h4>Елена П.</h4>
+                                <p>Новый клиент</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- Страница каталога -->
+    <section id="catalog" class="page">
+        <div class="catalog">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Каталог продукции</h2>
+                    <p>Все товары для вашей красоты в одном месте</p>
+                </div>
+                
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">Все товары</button>
+                    <button class="filter-btn" data-filter="face">Уход за лицом</button>
+                    <button class="filter-btn" data-filter="body">Уход за телом</button>
+                    <button class="filter-btn" data-filter="aroma">Ароматерапия</button>
+                    <button class="filter-btn" data-filter="new">Новинки</button>
+                </div>
+                
+                <div class="product-grid">
+                    <div class="product-card fade-in" data-category="face">
+                        <div class="product-badge">Хит продаж</div>
+                        <div class="product-image">
+                            💎
+                        </div>
+                        <div class="product-content">
+                            <div class="product-category">Уход за лицом</div>
+                            <h3 class="product-title">Омолаживающая сыворотка</h3>
+                            <div class="product-rating">
+                                ★★★★★
+                            </div>
+                            <div class="product-price">4 200 ₽</div>
+                            <button class="btn btn-primary" style="width: 100%;" onclick="addToCart('Омолаживающая сыворотка', 4200)">Добавить в корзину</button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card fade-in" data-category="body">
+                        <div class="product-badge">Новинка</div>
+                        <div class="product-image">
+                            🌿
+                        </div>
+                        <div class="product-content">
+                            <div class="product-category">Уход за телом</div>
+                            <h3 class="product-title">Питательный крем для тела</h3>
+                            <div class="product-rating">
+                                ★★★★☆
+                            </div>
+                            <div class="product-price">2 800 ₽</div>
+                            <button class="btn btn-primary" style="width: 100%;" onclick="addToCart('Питательный крем для тела', 2800)">Добавить в корзину</button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card fade-in" data-category="aroma">
+                        <div class="product-image">
+                            🌸
+                        </div>
+                        <div class="product-content">
+                            <div class="product-category">Ароматерапия</div>
+                            <h3 class="product-title">Эфирное масло лаванды</h3>
+                            <div class="product-rating">
+                                ★★★★★
+                            </div>
+                            <div class="product-price">1 500 ₽</div>
+                            <button class="btn btn-primary" style="width: 100%;" onclick="addToCart('Эфирное масло лаванды', 1500)">Добавить в корзину</button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card fade-in" data-category="face">
+                        <div class="product-image">
+                            💧
+                        </div>
+                        <div class="product-content">
+                            <div class="product-category">Уход за лицом</div>
+                            <h3 class="product-title">Увлажняющий тоник</h3>
+                            <div class="product-rating">
+                                ★★★★☆
+                            </div>
+                            <div class="product-price">1 800 ₽</div>
+                            <button class="btn btn-primary" style="width: 100%;" onclick="addToCart('Увлажняющий тоник', 1800)">Добавить в корзину</button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card fade-in" data-category="body">
+                        <div class="product-image">
+                            🛁
+                        </div>
+                        <div class="product-content">
+                            <div class="product-category">Уход за телом</div>
+                            <h3 class="product-title">Скраб для тела</h3>
+                            <div class="product-rating">
+                                ★★★★★
+                            </div>
+                            <div class="product-price">2 200 ₽</div>
+                            <button class="btn btn-primary" style="width: 100%;" onclick="addToCart('Скраб для тела', 2200)">Добавить в корзину</button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card fade-in" data-category="new">
+                        <div class="product-badge">Новинка</div>
+                        <div class="product-image">
+                            🌹
+                        </div>
+                        <div class="product-content">
+                            <div class="product-category">Ароматерапия</div>
+                            <h3 class="product-title">Розовая вода</h3>
+                            <div class="product-rating">
+                                ★★★★☆
+                            </div>
+                            <div class="product-price">1 200 ₽</div>
+                            <button class="btn btn-primary" style="width: 100%;" onclick="addToCart('Розовая вода', 1200)">Добавить в корзину</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Страница о компании -->
+    <section id="about" class="page">
+        <div class="company-hero">
+            <div class="container">
+                <h1>О компании Lumière Beauty</h1>
+                <p>История, философия и ценности нашего бренда</p>
+            </div>
+        </div>
+        
+        <div class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text fade-in">
+                        <h2>Наша история</h2>
+                        <p>Lumière Beauty была основана в 2015 году с целью создания косметики, которая объединяет в себе силу природы и достижения науки. Название "Lumière" в переводе с французского означает "свет", что отражает нашу миссию — помогать людям сиять изнутри и снаружи.</p>
+                        <p>Начав с небольшой лаборатории, сегодня мы превратились в уважаемый бренд премиальной косметики, представленный в лучших магазинах страны.</p>
+                    </div>
+                    
+                    <div class="about-visual fade-in">
+                        📖
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="company-values">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Наши ценности</h2>
+                    <p>Принципы, которые направляют нашу работу</p>
+                </div>
+                
+                <div class="values-grid">
+                    <div class="value-card fade-in">
+                        <div class="value-icon">🌿</div>
+                        <h3>Натуральность</h3>
+                        <p>Мы используем только натуральные ингредиенты, тщательно отобранные за их эффективность и безопасность.</p>
+                    </div>
+                    
+                    <div class="value-card fade-in">
+                        <div class="value-icon">🔬</div>
+                        <h3>Научный подход</h3>
+                        <p>Каждая формула разрабатывается совместно с дерматологами и проходит клинические испытания.</p>
+                    </div>
+                    
+                    <div class="value-card fade-in">
+                        <div class="value-icon">♻️</div>
+                        <h3>Экологичность</h3>
+                        <p>Мы стремимся минимизировать воздействие на окружающую среду на всех этапах производства.</p>
+                    </div>
+                    
+                    <div class="value-card fade-in">
+                        <div class="value-icon">🤝</div>
+                        <h3>Прозрачность</h3>
+                        <p>Мы честно рассказываем о составе наших продуктов и принципах их работы.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Страница контактов -->
+    <section id="contact" class="page">
+        <div class="contact-hero">
+            <div class="container">
+                <h1>Свяжитесь с нами</h1>
+                <p>Мы всегда рады вашим вопросам и отзывам</p>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h3>Адрес</h3>
+                            <p>Москва, ул. Красоты, 15</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <h3>Телефон</h3>
+                            <p>+7 (495) 123-45-67</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <h3>Email</h3>
+                            <p>info@lumiere-beauty.ru</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">🕒</div>
+                        <div>
+                            <h3>Часы работы</h3>
+                            <p>Пн-Пт: 9:00-20:00<br>Сб-Вс: 10:00-18:00</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Отправить сообщение</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Ваше имя</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Тема</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Сообщение</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Отправить сообщение</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Страница корзины -->
+    <section id="cart" class="page">
+        <div class="cart">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Корзина покупок</h2>
+                    <p>Товары, которые вы выбрали</p>
+                </div>
+                
+                <div class="cart-content">
+                    <table class="cart-table">
+                        <thead>
+                            <tr>
+                                <th>Товар</th>
+                                <th>Цена</th>
+                                <th>Количество</th>
+                                <th>Итого</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="cart-items">
+                            <!-- Товары будут добавляться сюда динамически -->
+                        </tbody>
+                    </table>
+                    
+                    <div class="cart-summary">
+                        <div class="summary-row">
+                            <span>Промежуточный итог:</span>
+                            <span id="subtotal">0 ₽</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Доставка:</span>
+                            <span>500 ₽</span>
+                        </div>
+                        <div class="summary-row summary-total">
+                            <span>Общая сумма:</span>
+                            <span id="total">0 ₽</span>
+                        </div>
+                        
+                        <button class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;">Оформить заказ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Lumière Beauty</h3>
+                    <p>Роскошная косметика для тех, кто ценит качество и натуральность.</p>
+                    <div class="social-links">
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Магазин</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" data-page="catalog">Уход за лицом</a></li>
+                        <li><a href="#" data-page="catalog">Уход за телом</a></li>
+                        <li><a href="#" data-page="catalog">Ароматерапия</a></li>
+                        <li><a href="#" data-page="catalog">Подарочные наборы</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Помощь</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Доставка и возврат</a></li>
+                        <li><a href="#">Частые вопросы</a></li>
+                        <li><a href="#" data-page="contact">Контакты</a></li>
+                        <li><a href="#">Политика конфиденциальности</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <ul class="footer-links">
+                        <li>📍 Москва, ул. Красоты, 15</li>
+                        <li>📞 +7 (495) 123-45-67</li>
+                        <li>✉️ info@lumiere-beauty.ru</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Lumière Beauty. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Навигация по страницам
+        document.querySelectorAll('[data-page]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pageId = this.getAttribute('data-page');
+                
+                // Скрываем все страницы
+                document.querySelectorAll('.page').forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                // Показываем выбранную страницу
+                document.getElementById(pageId).classList.add('active');
+                
+                // Прокручиваем к верху страницы
+                window.scrollTo(0, 0);
+                
+                // Закрываем мобильное меню
+                navMenu.classList.remove('show');
+            });
+        });
+
+        // Плавная прокрутка
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Изменение шапки при прокрутке
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Мобильное меню
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('nav ul');
+
+        menuToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('show');
+        });
+
+        // Анимация появления элементов при прокрутке
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Фильтрация товаров в каталоге
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Убираем активный класс у всех кнопок
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.classList.remove('active');
+                });
+                
+                // Добавляем активный класс к текущей кнопке
+                this.classList.add('active');
+                
+                const filter = this.getAttribute('data-filter');
+                const products = document.querySelectorAll('.product-card');
+                
+                products.forEach(product => {
+                    if (filter === 'all' || product.getAttribute('data-category') === filter) {
+                        product.style.display = 'block';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Корзина
+        let cart = [];
+        const cartCount = document.querySelector('.cart-count');
+        const cartItems = document.getElementById('cart-items');
+        const subtotalEl = document.getElementById('subtotal');
+        const totalEl = document.getElementById('total');
+
+        function addToCart(name, price) {
+            // Проверяем, есть ли товар уже в корзине
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    name: name,
+                    price: price,
+                    quantity: 1
+                });
+            }
+            
+            updateCart();
+            
+            // Показываем уведомление
+            alert(`Товар "${name}" добавлен в корзину!`);
+        }
+
+        function updateCart() {
+            // Обновляем счетчик товаров
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Очищаем таблицу корзины
+            cartItems.innerHTML = '';
+            
+            // Добавляем товары в таблицу
+            let subtotal = 0;
+            
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div class="cart-item-image">${getProductIcon(item.name)}</div>
+                            <div>${item.name}</div>
+                        </div>
+                    </td>
+                    <td>${item.price} ₽</td>
+                    <td>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="decreaseQuantity(${index})">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="quantity-btn" onclick="increaseQuantity(${index})">+</button>
+                        </div>
+                    </td>
+                    <td>${itemTotal} ₽</td>
+                    <td>
+                        <button class="quantity-btn" onclick="removeFromCart(${index})">🗑️</button>
+                    </td>
+                `;
+                
+                cartItems.appendChild(row);
+            });
+            
+            // Обновляем суммы
+            const delivery = 500;
+            const total = subtotal + delivery;
+            
+            subtotalEl.textContent = `${subtotal} ₽`;
+            totalEl.textContent = `${total} ₽`;
+        }
+
+        function getProductIcon(name) {
+            const icons = {
+                'Омолаживающая сыворотка': '💎',
+                'Питательный крем для тела': '🌿',
+                'Эфирное масло лаванды': '🌸',
+                'Увлажняющий тоник': '💧',
+                'Скраб для тела': '🛁',
+                'Розовая вода': '🌹'
+            };
+            
+            return icons[name] || '✨';
+        }
+
+        function increaseQuantity(index) {
+            cart[index].quantity += 1;
+            updateCart();
+        }
+
+        function decreaseQuantity(index) {
+            if (cart[index].quantity > 1) {
+                cart[index].quantity -= 1;
+            } else {
+                cart.splice(index, 1);
+            }
+            updateCart();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        // Обработка формы контактов
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Спасибо за ваше сообщение! Мы свяжемся с вами в ближайшее время.');
+            this.reset();
+        });
+
+        // Инициализация корзины
+        updateCart();
+    </script>
+</body>
+</html>
